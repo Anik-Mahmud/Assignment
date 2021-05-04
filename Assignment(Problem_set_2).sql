@@ -1,7 +1,7 @@
 -- 1. Select each MSISDN.
-select msisdn from ipdr02;
+select msisdn from ipdr;
 -- 2. Select Specific start and end datetime domain/app wise.
-select starttime,endtime,domain from ipdr02
+select starttime,endtime,domain from ipdr
 group by domain;
 -- 4. For each VoIP APP, identify each single call as like the graphical table at the bottom of this 
 -- document 
@@ -11,7 +11,7 @@ group by domain;
 -- - If ET-10 min < ST then keep the original ET.
 -- 5. Calculate Total volume of each call of each domain=(Sum of DL volume of all FDR + Sum of 
 -- UL volume of all FDR) in Kb. Value of UL and DL in CDR is in Byte.
-select starttime,endtime,msisdn,ulvolume,dlvolume,domain,((ulvolume+dlvolume)/1024) as kb from ipdr02;
+select starttime,endtime,msisdn,ulvolume,dlvolume,domain,((ulvolume+dlvolume)/1024) as kb from ipdr;
 
 -- 6. Calculate Total time of each call of each VoIP App= [each call Highest ET* among respected 
 -- FDR's(minute) - each call lowest ST among respected FDR's (minute)] in sec.
